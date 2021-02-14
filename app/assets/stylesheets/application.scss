@@ -14,12 +14,12 @@
  *= require_self
  */
 
- @import 'bulma';
+@import 'bulma';
 
-.notification:not(:last-child) {
-    margin-bottom: 0;
+.notification {
+  padding: 10px;
   }
   
-  .notification {
-    padding: 10px;
+.notification:not(:last-child) {
+  margin-bottom: 0;
   }

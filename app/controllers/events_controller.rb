@@ -35,11 +35,12 @@ class EventsController < ApplicationController
   private
 
   def attended_events
-    unless @user_signed_in
+    if @user_signed_in
       @user = User.find_by(id: session[:user_id])
       if @user
         @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
       end
+    end
   end
 
   def event_params
@@ -47,7 +48,7 @@ class EventsController < ApplicationController
   end
 
   def check_user_signed_in
-     super
+    super
    end
 
   def require_signed_in

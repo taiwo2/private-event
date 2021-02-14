@@ -1,5 +1,5 @@
 class InvitationsController < ApplicationController
-  before_action :check_user_signed_in  
+  before_action :check_user_signed_in
   def create
     invitation = Invitation.new(invitation_params)
     if invitation.save

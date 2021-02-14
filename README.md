@@ -1,24 +1,43 @@
-# README
+## 🔧 Built with<a name = "built_using"></a>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Ruby
+- Ruby on Rails
+- HTML
+- Bulma
 
-Things you may want to cover:
 
-* Ruby version
+## Getting started
 
-* System dependencies
+- Clone the repo `https://github.com/taiwo2/authenntication-post.git`
+- `cd` into the directory
+- Run `git checkout -b authentication`
+- Run `git pull origin authentication`
+- Run `bundle install`
+- Setup your db, and run `rails db:create db:migrate`
 
-* Configuration
+## Features
 
-* Database creation
 
-* Database initialization
+## Author
 
-* How to run the test suite
+👤 Taiwo Adetona
 
-* Services (job queues, cache servers, search engines, etc.)
+- Github: [@taiwo2](https://github.com/taiwo2)
 
-* Deployment instructions
+- LinkedIn: [Taiwo Adetona](https://www.linkedin.com/in/taiwo-adetona/)
 
-* ...
+- Twitter: [@TaiwoAdetona4](https://twitter.com/TaiwoAdetona4/)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check the issues page.
+
+Show your support
+
+Give a ⭐️ if you like this project!
+
+## 📝 License
+
+This project is a collaboration project. All rights are reserved for Taiwo.
