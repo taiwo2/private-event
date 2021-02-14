@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
 
   def check_user_signed_in
-    if session[:user_id] == nil
+    if session[:user_id].nil?
       @user_signed_in = false
     else
       @user = User.find_by(id: session[:user_id])
