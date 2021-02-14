@@ -1,0 +1,14 @@
+<article class="panel">
+  <p class="panel-heading">
+    Attended by
+  </p>
+
+  <% attendees.each do |att| %>
+    <a class="panel-block is-active">
+    <span class="panel-icon">
+      <i class="fas fa-book" aria-hidden="true"></i>
+    </span>
+      <%= att.name %>
+    </a>
+  <% end %>
+</article>
