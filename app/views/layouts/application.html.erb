@@ -6,11 +6,21 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all", 'data-turbolinks-track': "reload" %>
+    <%= javascript_pack_tag "application", 'data-turbolinks-track': "reload" %>
   </head>
 
   <body>
-    <%= yield %>
+    <% if notice %>
+  <div class="notification is-warning">
+    <p class="notice"><%= notice %></p></div>
+<% end %>
+<% if alert %>
+  <div class="notification is-danger">
+    <p class="alert"><%= alert %></p></div>
+<% end %>
+<%= render "layouts/navbar" %>
+<br/>
+<%= yield %>
   </body>
 </html>
