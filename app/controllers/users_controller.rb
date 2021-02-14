@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_signed_in, only: [:show]  
+  before_action :require_signed_in, only: [:show]
   def new
     @user = User.new
   end
@@ -57,7 +57,8 @@ class UsersController < ApplicationController
 
   def require_signed_in
     if !@user_signed_in
-      respond_to { |format| format.html { redirect_to '/sessions/new', alert: 'You have to be signed in!' } }
+      respond_to do { |format| format.html { redirect_to '/sessions/new', alert: 'You have to be signed in!' } }
+      end
     end
   end
 end

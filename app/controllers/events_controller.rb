@@ -53,7 +53,9 @@ class EventsController < ApplicationController
 
   def require_signed_in
     if !@user_signed_in
-      respond_to { |format| format.html { redirect_to '/sessions/new', alert: 'You have to be signed in!' } }
+
+      respond_to do { |format| format.html { redirect_to '/sessions/new', alert: 'You have to be signed in!' } }
+      end
     end
   end
 end
