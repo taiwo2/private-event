@@ -37,7 +37,6 @@ class EventsController < ApplicationController
   def attended_events
     if @user_signed_in
       @user = User.find_by(id: session[:user_id])
-
     elsif @user
       @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
     end
@@ -47,15 +46,9 @@ class EventsController < ApplicationController
     params.require(:event).permit(:title, :description, :location, :date, :user_id)
   end
 
-  def check_user_signed_in
-    super
-  end
-
   def require_signed_in
-    if !@user_signed_in
+    return if @user_signed_in
 
-      respond_to do { |format| format.html { redirect_to '/sessions/new', alert: 'You have to be signed in!' } }
-      end
-    end
+    respond_to { |format| format.html { redirect_to '/sessions/new', alert: 'You have to be signed in!' } }
   end
 end
