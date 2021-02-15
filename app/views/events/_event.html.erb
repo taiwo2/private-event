@@ -1,7 +1,6 @@
 <div class="box">
   <div class="media-content">
     <span class="title is-4 media-left"><%= link_to event.title, event %></span>
-
     <% if @user_signed_in %>
       <% if @attended_events.include? event.id %>
         <%= link_to "Unattend", invitation_path(event.invitations[0].id), method: :delete, class: "button is-danger media-right is-pulled-right" %>
@@ -16,6 +15,7 @@
   <div class="columns">
     <span class="column is-half">Hosted by <strong><%= event.host.name %></strong></span>
     <span class="column is-half has-text-right"><%= event.location %> -
-    <small><%= event.date.to_formatted_s(:db) %></small>
-    </span></div>
+      <small><%= event.date.to_formatted_s(:db) %></small>
+    </span>
+  </div>
 </div
