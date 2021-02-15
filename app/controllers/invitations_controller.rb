@@ -1,32 +1,23 @@
 class InvitationsController < ApplicationController
   before_action :check_user_signed_in
+
   def create
     invitation = Invitation.new(invitation_params)
+
     if invitation.save
-      respond_to do |format|
-        format.html { redirect_to '/', notice: 'Event added to your attended list' }
-        format.json { head :no_content }
-      end
+      redirect_to root_path, notice: 'Event added to your attended list'
     else
-      respond_to do |format|
-        format.html { redirect_to '/', alert: 'Event could not be added to your attended events' }
-        format.json { head :no_content }
-      end
+      redirect_to root_path, alert: 'Event could not be added to your attended events'
     end
   end
 
   def destroy
     invitation = Invitation.find_by(id: params[:id])
+
     if invitation.destroy
-      respond_to do |format|
-        format.html { redirect_to '/', notice: 'Event removed from your attended events' }
-        format.json { head :no_content }
-      end
+      redirect_to root_path, notice: 'Event removed from your attended events'
     else
-      respond_to do |format|
-        format.html { redirect_to '/', alert: 'Error removing event from your attended events' }
-        format.json { head :no_content }
-      end
+      redirect_to root_path, alert: 'Error removing event from your attended events'
     end
   end
 

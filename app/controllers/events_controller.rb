@@ -18,44 +18,29 @@ class EventsController < ApplicationController
   def create
     @user = User.find_by(id: session[:user_id])
     @event = @user.hosted_events.build(event_params)
+
     if @event.save
-      respond_to do |format|
-        format.html { redirect_to '/', notice: 'Event posted!' }
-        format.json { head :no_content }
-      end
+      redirect_to root_path, notice: 'Event posted'
     else
-      respond_to do |format|
-        puts @event.errors.full_messages
-        format.html { redirect_to '/', alert: 'Event could not be posted...' }
-        format.json { head :no_content }
-      end
+      redirect_to root_path, alert: 'Event could not be posted'
     end
   end
 
   private
 
   def attended_events
-    if @user_signed_in
-      @user = User.find_by(id: session[:user_id])
+    return unless @user_signed_in
 
-    elsif @user
-      @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
-    end
+    @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
   end
 
   def event_params
     params.require(:event).permit(:title, :description, :location, :date, :user_id)
   end
 
-  def check_user_signed_in
-    super
-  end
-
   def require_signed_in
-    if !@user_signed_in
+    return if @user_signed_in
 
-      respond_to do { |format| format.html { redirect_to '/sessions/new', alert: 'You have to be signed in!' } }
-      end
-    end
+    redirect_to new_session_path, alert: 'You have to be signed in'
   end
 end

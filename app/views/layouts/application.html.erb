@@ -13,15 +13,17 @@
 
   <body>
     <% if notice %>
-  <div class="notification is-warning">
-    <p class="notice"><%= notice %></p></div>
-<% end %>
-<% if alert %>
-  <div class="notification is-danger">
-    <p class="alert"><%= alert %></p></div>
-<% end %>
-<%= render "layouts/navbar" %>
-<br/>
-<%= yield %>
+      <div class="notification is-warning">
+        <p class="notice"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert %>
+      <div class="notification is-danger">
+        <p class="alert"><%= alert %></p>
+      </div>
+    <% end %>
+    <%= render "layouts/navbar" %>
+    <br/>
+    <%= yield %>
   </body>
 </html>

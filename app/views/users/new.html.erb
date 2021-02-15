@@ -1,13 +1,13 @@
 <div class="container">
-<div class="columns">
-<div class="column is-half is-offset-one-quarter">
-  <h1 class="title is-2 has-text-centered">New User</h1>
-<%= form_with model: @user do |f| %>
-  <%= f.text_field :name, class: "input is-primary", placeholder: "Username" %>
-    <br/>
-    <br/>
-  <%= f.submit class: "button is-primary", style: "width: 100%" %>
-<% end %>
-</div>
-</div>
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <h1 class="title is-2 has-text-centered">New User</h1>
+      <%= form_with model: @user do |f| %>
+        <%= f.text_field :name, class: "input is-primary", placeholder: "Username" %>
+        <br/>
+        <br/>
+        <%= f.submit class: "button is-primary", style: "width: 100%" %>
+      <% end %>
+    </div>
+  </div>
 </div>
