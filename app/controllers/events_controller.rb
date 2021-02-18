@@ -4,8 +4,7 @@ class EventsController < ApplicationController
   before_action :attended_events, only: %i[index show]
 
   def index
-    @past_events = Event.past
-    @upcoming_events = Event.upcoming
+    @events = Event.all.order('date')
   end
 
   def new
