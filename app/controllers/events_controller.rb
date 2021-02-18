@@ -18,7 +18,7 @@ class EventsController < ApplicationController
 
   def create
     @user = User.find_by(id: session[:user_id])
-    @event = current_user.events.build(event_params)
+    @event = current_user.hosted_events.build(event_params)
     if @event.save
       redirect_to root_path, notice: 'Event posted'
     else
@@ -42,5 +42,9 @@ class EventsController < ApplicationController
     return if @user_signed_in
 
     redirect_to new_session_path, alert: 'You have to be signed in'
+  end
+
+  def current_user
+    @current_user ||= User.find_by(id: session[:user_id])
   end
 end

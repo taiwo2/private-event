@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :check_user_signed_in
+  include SessionsHelper
 
   private
 
