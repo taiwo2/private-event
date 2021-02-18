@@ -2,15 +2,12 @@
   <div class="columns">
     <div class="column is-half">
       <h1 class="title is-2 has-text-centered">Upcoming Events</h1>
-      <% @events.future.each do |event| %>
-        <%= render "layouts/event", event: event %>
-      <% end %>
+        <%= render @upcoming_events %>
+      
     </div>
     <div class="column is-half">
       <h1 class="title is-2 has-text-centered">Past Events</h1>
-      <% @events.past.each do |event| %>
-        <%= render "layouts/event", event: event %>
-      <% end %>
+      <%= render @past_events %>
     </div>
   </div>
 </div>

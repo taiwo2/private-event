@@ -4,7 +4,8 @@ class EventsController < ApplicationController
   before_action :attended_events, only: %i[index show]
 
   def index
-    @events = Event.all.order('date')
+    @past_events = Event.past
+    @upcoming_events = Event.upcoming
   end
 
   def new
@@ -17,8 +18,7 @@ class EventsController < ApplicationController
 
   def create
     @user = User.find_by(id: session[:user_id])
-    @event = @user.hosted_events.build(event_params)
-
+    @event = current_user.events.build(event_params)
     if @event.save
       redirect_to root_path, notice: 'Event posted'
     else
