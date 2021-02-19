@@ -31,7 +31,7 @@ class EventsController < ApplicationController
   def attended_events
     return unless @user_signed_in
 
-    @attended_events = Invitation.where(user_id: @user.id).pluck(:event_id)
+    @attended_events = Invitation.where(attendee_id: @user.id).pluck(:event_id)
   end
 
   def event_params
