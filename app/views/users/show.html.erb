@@ -1,10 +1,22 @@
 <div class="container">
   <div class="columns">
-    <div class="column is-half">
-      <%= render "hosted-events", user: @user %>
+    <div class="column is-one-third">
+      <p class="panel-heading">
+        Created event
+      </p>
+      <%= render "user_event", events: @users_event %>
     </div>
-    <div class="column is-half">
-      <%= render "attended-events", user: @user %>
+    <div class="column is-one-third">
+      <p class="panel-heading">
+        Previous event
+      </p>
+      <%= render "user_event", events: @previous_events, dark: true %>
+    </div>
+    <div class="column is-one-third">
+      <p class="panel-heading">
+        Upcoming events
+      </p>
+      <%= render "user_event", events: @upcoming_events %>
     </div>
   </div>
 </div>

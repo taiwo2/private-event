@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_signed_in, only: [:show]
+  before_action :authenticate_user, only: %i[show]
+
   def new
     @user = User.new
   end
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      session[:user_id] = @user.id
+      login(@user)
       redirect_to root_path, notice: 'Username successfully created'
     else
       redirect_to root_path, alert: `Username,  #{@user.errors[:name][0]}`
@@ -25,11 +26,5 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name)
-  end
-
-  def require_signed_in
-    return if @user_signed_in
-
-    redirect_to new_session_path, alert: 'You have to be signed in'
   end
 end

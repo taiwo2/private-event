@@ -3,12 +3,12 @@
     Attended by
   </p>
 
-  <% attendees.each do |att| %>
+  <% attendees.each do |attendee| %>
     <a class="panel-block is-active">
     <span class="panel-icon">
       <i class="fas fa-book" aria-hidden="true"></i>
     </span>
-      <%= att.name %>
+      <%= attendee.name %>
     </a>
   <% end %>
 </article>

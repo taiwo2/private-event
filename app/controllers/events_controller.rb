@@ -1,7 +1,5 @@
 class EventsController < ApplicationController
-  before_action :check_user_signed_in
-  before_action :require_signed_in, only: %i[create new]
-  before_action :attended_events, only: %i[index show]
+  before_action :authenticate_user, only: %i[create new]
 
   def index
     @past_events = Event.past
@@ -17,9 +15,10 @@ class EventsController < ApplicationController
   end
 
   def create
-    @user = User.find_by(id: session[:user_id])
-    @event = current_user.hosted_events.build(event_params)
+    @event = current_user.events.build(event_params)
+
     if @event.save
+      EventAttendance.create! attendee: current_user, attended_event: @event
       redirect_to root_path, notice: 'Event posted'
     else
       redirect_to root_path, alert: 'Event could not be posted'
@@ -28,23 +27,7 @@ class EventsController < ApplicationController
 
   private
 
-  def attended_events
-    return unless @user_signed_in
-
-    @attended_events = Invitation.where(attendee_id: @user.id).pluck(:event_id)
-  end
-
   def event_params
-    params.require(:event).permit(:title, :description, :location, :date, :user_id)
-  end
-
-  def require_signed_in
-    return if @user_signed_in
-
-    redirect_to new_session_path, alert: 'You have to be signed in'
-  end
-
-  def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    params.require(:event).permit(:title, :description, :location, :event_date)
   end
 end

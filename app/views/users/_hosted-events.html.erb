@@ -1,8 +1,0 @@
-<article class="panel">
-  <p class="panel-heading">
-    My Hosted Events
-  </p>
-  <% user.hosted_events.each do |evt| %>
-    <%= link_to evt.title, event_path(evt), class: "panel-block" %>
-  <% end %>
-</article>

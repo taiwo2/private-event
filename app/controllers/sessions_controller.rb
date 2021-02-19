@@ -3,10 +3,9 @@ class SessionsController < ApplicationController
     @user = User.find_by(name: params[:name])
 
     if @user
-      session[:user_id] = @user.id
+      login(@user)
       redirect_to root_path, notice: 'Logged in successfully'
     else
-      session[:user_id] = nil
       redirect_to root_path, alert: 'Username not found'
     end
   end

@@ -1,11 +1,15 @@
 <div class="box">
   <div class="media-content">
     <span class="title is-4 media-left"><%= link_to event.title, event %></span>
-    <% if @user_signed_in %>
-      <% if @attended_events.include? event.id %>
-        <%= link_to "Unattend", invitation_path(event.invitations[0].id), method: :delete, class: "button is-danger media-right is-pulled-right" %>
+    <% if user_signed_in? %>
+      <% if event.attendees.exists? current_user.id %>
+        <%= form_with url: event_attendance_path(current_user.find_attended_event(event)), method: :delete do |form| %>
+          <%= form.submit "Unattend", class: "button is-danger" %>
+        <% end %>
       <% else %>
-        <%= link_to "Attend", invitations_path(invitation: { attended_event_id: event.id, attendee_id: @user.id }), method: :post, class: "button is-primary media-right is-pulled-right" %>
+        <%= form_with url: event_event_attendances_path(event) do |form| %>
+          <%= form.submit "Join this event", class: "button is-primary" %>
+        <% end %>
       <% end %>
     <% end %>
     </span>
@@ -13,9 +17,14 @@
   <p><%= event.description %></p>
   <hr/>
   <div class="columns">
-    <span class="column is-half">Hosted by <strong><%= event.host.name %></strong></span>
+    <span>Attended event:</span>
+    <% event.attendees.each do |attendee| %>
+      <div>
+        <%= attendee.name %>
+      </div>
+    <% end %>
     <span class="column is-half has-text-right"><%= event.location %> -
-      <small><%= event.date.to_formatted_s(:db) %></small>
+      <small><%= event.event_date.to_formatted_s(:db) %></small>
     </span>
   </div>
-</div
+</div>
