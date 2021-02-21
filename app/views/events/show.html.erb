@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="columns">
+    <div class="column is-one-quarter">
+      <%= render "attendees", attendees: @event.attendees %>
+    </div>
+    <div class="column is-half">
+      <%= render "event", event: @event %>
+    </div>
+  </div>
+</div>

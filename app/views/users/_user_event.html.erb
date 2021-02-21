@@ -1,0 +1,5 @@
+<article class="panel <%= local_assigns[:dark] ? 'is-dark' : nil %>">
+  <% events.each do |event| %>
+    <%= link_to event.title, event_path(event), class: "panel-block" %>
+  <% end %>
+</article>
