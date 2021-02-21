@@ -13,6 +13,8 @@
 - Run `git checkout -b authentication`
 - Run `git pull origin authentication`
 - Run `bundle install`
+- Run `yarn install`
+- Run `ruby ./bin/webpack-dev-server`
 - Setup your db, and run `rails db:create db:migrate`
 
 ## Features
