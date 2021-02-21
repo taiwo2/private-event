@@ -8,10 +8,10 @@
 
 ## Getting started
 
-- Clone the repo `https://github.com/taiwo2/authenntication-post.git`
+- Clone the repo `https://github.com/taiwo2/private-event.git`
 - `cd` into the directory
-- Run `git checkout -b authentication`
-- Run `git pull origin authentication`
+- Run `git checkout -b event-refactor`
+- Run `git pull origin event-refactor`
 - Run `bundle install`
 - Run `yarn install`
 - Run `ruby ./bin/webpack-dev-server`
